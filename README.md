@@ -1,6 +1,7 @@
-[![GoDoc](https://godoc.org/gopkg.in/romanyx/nullable.v1?status.svg)](https://godoc.org/gopkg.in/romanyx/nullable.v1)
-[![Build Status](https://travis-ci.org/romanyx/nullable.png)](https://travis-ci.org/romanyx/nullable)
-[![Go Report Card](https://goreportcard.com/badge/github.com/romanyx/nullable)](https://goreportcard.com/report/github.com/romanyx/nullable)
+[![Build Status](https://travis-ci.com/kernle32dll/nullable.svg?branch=master)](https://travis-ci.com/kernle32dll/nullable)
+[![GoDoc](https://godoc.org/github.com/kernle32dll/nullable?status.svg)](http://godoc.org/github.com/kernle32dll/nullable)
+[![Go Report Card](https://goreportcard.com/badge/github.com/kernle32dll/nullable)](https://goreportcard.com/report/github.com/kernle32dll/nullable)
+[![codecov](https://codecov.io/gh/kernle32dll/nullable/branch/master/graph/badge.svg)](https://codecov.io/gh/kernle32dll/nullable)
 
 # nullable
 
@@ -12,13 +13,13 @@ Inspired by [How to determine if a JSON key has been set to null or not provided
 To get the package, execute:
 
 ```bash
-go get gopkg.in/romanyx/nullable.v1
+go get github.com/kernle32dll/nullable
 ```
 
 To import this package, add the following line to your code:
 
 ```bash
-import "gopkg.in/romanyx/nullable.v1"
+import "github.com/kernle32dll/nullable"
 ```
 
 Refer to it as `nullable`.
@@ -28,7 +29,7 @@ For more details, see the API documentation.
 # Example
 
 ``` go
-import "gopkg.in/romanyx/nullable.v1"
+import "github.com/kernle32dll/nullable"
 
 func main() {
 	usr := struct {
