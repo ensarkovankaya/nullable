@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	"gopkg.in/romanyx/nullable.v1"
+	"github.com/kernle32dll/nullable"
 )
 
 const (
