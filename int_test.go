@@ -9,9 +9,10 @@ import (
 
 func TestInt_UnmarshalJSON(t *testing.T) {
 	tests := []struct {
-		name   string
-		buf    *bytes.Buffer
-		expect Int
+		name      string
+		buf       *bytes.Buffer
+		expect    Int
+		expectErr error
 	}{
 		{
 			name: "null value",
@@ -19,6 +20,7 @@ func TestInt_UnmarshalJSON(t *testing.T) {
 			expect: Int{
 				Present: true,
 			},
+			expectErr: nil,
 		},
 		{
 			name: "valid value",
@@ -28,11 +30,21 @@ func TestInt_UnmarshalJSON(t *testing.T) {
 				Valid:   true,
 				Value:   1,
 			},
+			expectErr: nil,
 		},
 		{
-			name:   "empty",
-			buf:    bytes.NewBufferString(`{}`),
-			expect: Int{},
+			name:      "empty",
+			buf:       bytes.NewBufferString(`{}`),
+			expect:    Int{},
+			expectErr: nil,
+		},
+		{
+			name: "unmarshallable",
+			buf:  bytes.NewBufferString(`{"value":"wat"}`),
+			expect: Int{
+				Present: true,
+			},
+			expectErr: &json.UnmarshalTypeError{},
 		},
 	}
 	for _, tt := range tests {
@@ -41,7 +53,7 @@ func TestInt_UnmarshalJSON(t *testing.T) {
 				Value Int `json:"value"`
 			}{}
 
-			if err := json.Unmarshal(tt.buf.Bytes(), &str); err != nil {
+			if err := json.Unmarshal(tt.buf.Bytes(), &str); !typeMatch(tt.expectErr, err) {
 				t.Fatalf("unexpected unmarshaling error: %s", err)
 			}
 
@@ -55,9 +67,10 @@ func TestInt_UnmarshalJSON(t *testing.T) {
 
 func TestIntSlice_UnmarshalJSON(t *testing.T) {
 	tests := []struct {
-		name   string
-		buf    *bytes.Buffer
-		expect IntSlice
+		name      string
+		buf       *bytes.Buffer
+		expect    IntSlice
+		expectErr error
 	}{
 		{
 			name: "null value",
@@ -65,6 +78,7 @@ func TestIntSlice_UnmarshalJSON(t *testing.T) {
 			expect: IntSlice{
 				Present: true,
 			},
+			expectErr: nil,
 		},
 		{
 			name: "valid value",
@@ -74,11 +88,21 @@ func TestIntSlice_UnmarshalJSON(t *testing.T) {
 				Valid:   true,
 				Value:   []int64{1, 2},
 			},
+			expectErr: nil,
 		},
 		{
-			name:   "empty",
-			buf:    bytes.NewBufferString(`{}`),
-			expect: IntSlice{},
+			name:      "empty",
+			buf:       bytes.NewBufferString(`{}`),
+			expect:    IntSlice{},
+			expectErr: nil,
+		},
+		{
+			name: "unmarshallable",
+			buf:  bytes.NewBufferString(`{"value":"wat"}`),
+			expect: IntSlice{
+				Present: true,
+			},
+			expectErr: &json.UnmarshalTypeError{},
 		},
 	}
 	for _, tt := range tests {
@@ -87,7 +111,7 @@ func TestIntSlice_UnmarshalJSON(t *testing.T) {
 				Value IntSlice `json:"value"`
 			}{}
 
-			if err := json.Unmarshal(tt.buf.Bytes(), &str); err != nil {
+			if err := json.Unmarshal(tt.buf.Bytes(), &str); !typeMatch(tt.expectErr, err) {
 				t.Fatalf("unexpected unmarshaling error: %s", err)
 			}
 
