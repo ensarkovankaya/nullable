@@ -3,6 +3,7 @@ package nullable
 import (
 	"bytes"
 	"encoding/json"
+	"github.com/go-openapi/strfmt"
 )
 
 var null = []byte("null")
@@ -13,6 +14,16 @@ type String struct {
 	Present bool // Present is true if key is present in json
 	Valid   bool // Valid is true if value is not null and valid string
 	Value   string
+}
+
+// Returns nil if not present or valid. Otherwise it will
+// return a pointer to the value.
+func (s *String) Ptr() *string {
+	if s.Present && s.Valid {
+		return &s.Value
+	}
+
+	return nil
 }
 
 // UnmarshalJSON implements json.Marshaler interface.
@@ -28,6 +39,11 @@ func (s *String) UnmarshalJSON(data []byte) error {
 	}
 
 	s.Valid = true
+	return nil
+}
+
+// Validate implements runtime.Validateable interface for go-swagger generation.
+func (s *String) Validate(formats strfmt.Registry) error {
 	return nil
 }
 

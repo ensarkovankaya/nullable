@@ -13,6 +13,7 @@ func TestString_UnmarshalJSON(t *testing.T) {
 		buf       *bytes.Buffer
 		expect    String
 		expectErr error
+		expectedPtrNil bool
 	}{
 		{
 			name: "null value",
@@ -21,6 +22,7 @@ func TestString_UnmarshalJSON(t *testing.T) {
 				Present: true,
 			},
 			expectErr: nil,
+			expectedPtrNil: true,
 		},
 		{
 			name: "valid value",
@@ -31,12 +33,14 @@ func TestString_UnmarshalJSON(t *testing.T) {
 				Value:   "string",
 			},
 			expectErr: nil,
+			expectedPtrNil: false,
 		},
 		{
 			name:      "empty",
 			buf:       bytes.NewBufferString(`{}`),
 			expect:    String{},
 			expectErr: nil,
+			expectedPtrNil: true,
 		},
 		{
 			name: "unmarshallable",
@@ -45,6 +49,7 @@ func TestString_UnmarshalJSON(t *testing.T) {
 				Present: true,
 			},
 			expectErr: &json.UnmarshalTypeError{},
+			expectedPtrNil: true,
 		},
 	}
 	for _, tt := range tests {
@@ -58,7 +63,7 @@ func TestString_UnmarshalJSON(t *testing.T) {
 			}
 
 			got := str.Value
-			if got.Present != tt.expect.Present || got.Valid != tt.expect.Valid || got.Value != tt.expect.Value {
+			if got.Present != tt.expect.Present || got.Valid != tt.expect.Valid || got.Value != tt.expect.Value || got.Ptr() == nil != tt.expectedPtrNil {
 				t.Errorf("expected value to be %#v got %#v", tt.expect, got)
 			}
 		})
