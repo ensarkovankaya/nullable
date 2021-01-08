@@ -1,3 +1,3 @@
-module github.com/kernle32dll/nullable
+module github.com/mwieser/nullable
 
-go 1.12
+go 1.14
