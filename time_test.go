@@ -11,10 +11,11 @@ var referenceDate = time.Date(1991, 5, 23, 1, 2, 3, 4, time.UTC)
 
 func TestTime_UnmarshalJSON(t *testing.T) {
 	tests := []struct {
-		name      string
-		buf       *bytes.Buffer
-		expect    Time
-		expectErr error
+		name           string
+		buf            *bytes.Buffer
+		expect         Time
+		expectErr      error
+		expectedPtrNil bool
 	}{
 		{
 			name: "null value",
@@ -22,7 +23,8 @@ func TestTime_UnmarshalJSON(t *testing.T) {
 			expect: Time{
 				Present: true,
 			},
-			expectErr: nil,
+			expectErr:      nil,
+			expectedPtrNil: true,
 		},
 		{
 			name: "valid value",
@@ -32,13 +34,15 @@ func TestTime_UnmarshalJSON(t *testing.T) {
 				Valid:   true,
 				Value:   referenceDate,
 			},
-			expectErr: nil,
+			expectErr:      nil,
+			expectedPtrNil: false,
 		},
 		{
-			name:      "empty",
-			buf:       bytes.NewBufferString(`{}`),
-			expect:    Time{},
-			expectErr: nil,
+			name:           "empty",
+			buf:            bytes.NewBufferString(`{}`),
+			expect:         Time{},
+			expectErr:      nil,
+			expectedPtrNil: true,
 		},
 		{
 			name: "unmarshallable",
@@ -46,7 +50,8 @@ func TestTime_UnmarshalJSON(t *testing.T) {
 			expect: Time{
 				Present: true,
 			},
-			expectErr: &time.ParseError{},
+			expectErr:      &time.ParseError{},
+			expectedPtrNil: true,
 		},
 	}
 	for _, tt := range tests {
@@ -60,7 +65,7 @@ func TestTime_UnmarshalJSON(t *testing.T) {
 			}
 
 			got := str.Value
-			if got.Present != tt.expect.Present || got.Valid != tt.expect.Valid || got.Value != tt.expect.Value {
+			if got.Present != tt.expect.Present || got.Valid != tt.expect.Valid || got.Value != tt.expect.Value || got.Ptr() == nil != tt.expectedPtrNil {
 				t.Errorf("expected value to be %#v got %#v", tt.expect, got)
 			}
 		})

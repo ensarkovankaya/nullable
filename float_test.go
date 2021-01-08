@@ -9,10 +9,11 @@ import (
 
 func TestFloat_UnmarshalJSON(t *testing.T) {
 	tests := []struct {
-		name      string
-		buf       *bytes.Buffer
-		expect    Float64
-		expectErr error
+		name           string
+		buf            *bytes.Buffer
+		expect         Float64
+		expectErr      error
+		expectedPtrNil bool
 	}{
 		{
 			name: "null value",
@@ -20,7 +21,8 @@ func TestFloat_UnmarshalJSON(t *testing.T) {
 			expect: Float64{
 				Present: true,
 			},
-			expectErr: nil,
+			expectErr:      nil,
+			expectedPtrNil: true,
 		},
 		{
 			name: "valid value",
@@ -30,13 +32,15 @@ func TestFloat_UnmarshalJSON(t *testing.T) {
 				Valid:   true,
 				Value:   1.1,
 			},
-			expectErr: nil,
+			expectErr:      nil,
+			expectedPtrNil: false,
 		},
 		{
-			name:      "empty",
-			buf:       bytes.NewBufferString(`{}`),
-			expect:    Float64{},
-			expectErr: nil,
+			name:           "empty",
+			buf:            bytes.NewBufferString(`{}`),
+			expect:         Float64{},
+			expectErr:      nil,
+			expectedPtrNil: true,
 		},
 		{
 			name: "unmarshallable",
@@ -44,7 +48,8 @@ func TestFloat_UnmarshalJSON(t *testing.T) {
 			expect: Float64{
 				Present: true,
 			},
-			expectErr: &json.UnmarshalTypeError{},
+			expectErr:      &json.UnmarshalTypeError{},
+			expectedPtrNil: true,
 		},
 	}
 	for _, tt := range tests {
@@ -58,7 +63,7 @@ func TestFloat_UnmarshalJSON(t *testing.T) {
 			}
 
 			got := str.Value
-			if got.Present != tt.expect.Present || got.Valid != tt.expect.Valid || got.Value != tt.expect.Value {
+			if got.Present != tt.expect.Present || got.Valid != tt.expect.Valid || got.Value != tt.expect.Value || got.Ptr() == nil != tt.expectedPtrNil {
 				t.Errorf("expected value to be %#v got %#v", tt.expect, got)
 			}
 		})
