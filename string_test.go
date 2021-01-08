@@ -9,10 +9,10 @@ import (
 
 func TestString_UnmarshalJSON(t *testing.T) {
 	tests := []struct {
-		name      string
-		buf       *bytes.Buffer
-		expect    String
-		expectErr error
+		name           string
+		buf            *bytes.Buffer
+		expect         String
+		expectErr      error
 		expectedPtrNil bool
 	}{
 		{
@@ -21,7 +21,7 @@ func TestString_UnmarshalJSON(t *testing.T) {
 			expect: String{
 				Present: true,
 			},
-			expectErr: nil,
+			expectErr:      nil,
 			expectedPtrNil: true,
 		},
 		{
@@ -32,14 +32,14 @@ func TestString_UnmarshalJSON(t *testing.T) {
 				Valid:   true,
 				Value:   "string",
 			},
-			expectErr: nil,
+			expectErr:      nil,
 			expectedPtrNil: false,
 		},
 		{
-			name:      "empty",
-			buf:       bytes.NewBufferString(`{}`),
-			expect:    String{},
-			expectErr: nil,
+			name:           "empty",
+			buf:            bytes.NewBufferString(`{}`),
+			expect:         String{},
+			expectErr:      nil,
 			expectedPtrNil: true,
 		},
 		{
@@ -48,7 +48,7 @@ func TestString_UnmarshalJSON(t *testing.T) {
 			expect: String{
 				Present: true,
 			},
-			expectErr: &json.UnmarshalTypeError{},
+			expectErr:      &json.UnmarshalTypeError{},
 			expectedPtrNil: true,
 		},
 	}

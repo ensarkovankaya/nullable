@@ -4,6 +4,7 @@
 
 # first is default task when running "make" without args
 build:
+	@$(MAKE) go-generate
 	@$(MAKE) go-format
 	@$(MAKE) go-build
 	@$(MAKE) go-lint
@@ -27,6 +28,9 @@ go-build:
 
 go-lint:
 	golangci-lint run --fast
+
+go-generate:
+	go run -tags scripts scripts/nullable/gen_nullable_types.go
 
 # https://github.com/golang/go/issues/24573
 # w/o cache - see "go help testflag"

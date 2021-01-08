@@ -8,65 +8,65 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// Bool represents a bool that may be null or not
+// Int32 represents a int32 that may be null or not
 // present in json at all.
-type Bool struct {
+type Int32 struct {
 	Present bool // Present is true if key is present in json
-	Valid   bool // Valid is true if value is not null and valid bool
-	Value   bool
+	Valid   bool // Valid is true if value is not null and valid int32
+	Value   int32
 }
 
 // Returns nil if not present or valid. Otherwise it will
 // return a pointer to the value.
-func (b *Bool) Ptr() *bool {
-	if b.Present && b.Valid {
-		return &b.Value
+func (i *Int32) Ptr() *int32 {
+	if i.Present && i.Valid {
+		return &i.Value
 	}
 
 	return nil
 }
 
 // UnmarshalJSON implements json.Marshaler interface.
-func (b *Bool) UnmarshalJSON(data []byte) error {
-	b.Present = true
+func (i *Int32) UnmarshalJSON(data []byte) error {
+	i.Present = true
 
 	if bytes.Equal(data, null) {
 		return nil
 	}
 
-	if err := json.Unmarshal(data, &b.Value); err != nil {
+	if err := json.Unmarshal(data, &i.Value); err != nil {
 		return err
 	}
 
-	b.Valid = true
+	i.Valid = true
 	return nil
 }
 
 // Validate implements runtime.Validateable interface for go-swagger generation.
-func (b *Bool) Validate(formats strfmt.Registry) error {
+func (i *Int32) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-// BoolSlice represents a []bool that may be null or not
+// Int32Slice represents a []int32 that may be null or not
 // present in json at all.
-type BoolSlice struct {
+type Int32Slice struct {
 	Present bool // Present is true if key is present in json
 	Valid   bool // Valid is true if value is not null
-	Value   []bool
+	Value   []int32
 }
 
 // UnmarshalJSON implements json.Marshaler interface.
-func (b *BoolSlice) UnmarshalJSON(data []byte) error {
-	b.Present = true
+func (i *Int32Slice) UnmarshalJSON(data []byte) error {
+	i.Present = true
 
 	if bytes.Equal(data, null) {
 		return nil
 	}
 
-	if err := json.Unmarshal(data, &b.Value); err != nil {
+	if err := json.Unmarshal(data, &i.Value); err != nil {
 		return err
 	}
 
-	b.Valid = true
+	i.Valid = true
 	return nil
 }

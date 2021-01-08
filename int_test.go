@@ -86,7 +86,7 @@ func TestIntSlice_UnmarshalJSON(t *testing.T) {
 			expect: IntSlice{
 				Present: true,
 				Valid:   true,
-				Value:   []int64{1, 2},
+				Value:   []int{1, 2},
 			},
 			expectErr: nil,
 		},
