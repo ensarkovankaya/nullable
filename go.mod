@@ -1,4 +1,4 @@
-module github.com/mwieser/nullable
+module github.com/allaboutapps/nullable
 
 go 1.14
 

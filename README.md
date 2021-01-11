@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/kernle32dll/nullable.svg?branch=master)](https://travis-ci.com/kernle32dll/nullable)
-[![GoDoc](https://godoc.org/github.com/mwieser/nullable?status.svg)](http://godoc.org/github.com/mwieser/nullable)
-[![Go Report Card](https://goreportcard.com/badge/github.com/mwieser/nullable)](https://goreportcard.com/report/github.com/mwieser/nullable)
+[![GoDoc](https://godoc.org/github.com/allaboutapps/nullable?status.svg)](http://godoc.org/github.com/allaboutapps/nullable)
+[![Go Report Card](https://goreportcard.com/badge/github.com/allaboutapps/nullable)](https://goreportcard.com/report/github.com/allaboutapps/nullable)
 [![codecov](https://codecov.io/gh/kernle32dll/nullable/branch/master/graph/badge.svg)](https://codecov.io/gh/kernle32dll/nullable)
 
 # nullable
@@ -13,13 +13,13 @@ Inspired by [How to determine if a JSON key has been set to null or not provided
 To get the package, execute:
 
 ```bash
-go get github.com/mwieser/nullable
+go get github.com/allaboutapps/nullable
 ```
 
 To import this package, add the following line to your code:
 
 ```bash
-import "github.com/mwieser/nullable"
+import "github.com/allaboutapps/nullable"
 ```
 
 Refer to it as `nullable`.
@@ -28,8 +28,8 @@ For more details, see the API documentation.
 
 # Example
 
-``` go
-import "github.com/mwieser/nullable"
+```go
+import "github.com/allaboutapps/nullable"
 
 func main() {
 	usr := struct {
@@ -63,6 +63,49 @@ func main() {
 	fmt.Println(usr.Name.Valid)   // true
 	fmt.Println(usr.Name.Value)   // "John"
 }
+```
+
+# go-swagger usage example
+
+```yaml
+definitions:
+  NullableInt:
+    type: integer
+    example: 1234
+    x-go-type:
+      import:
+        package: github.com/allaboutapps/nullable
+      type: Int
+  NullableInt16:
+    type: integer
+    example: 1234
+    x-go-type:
+      import:
+        package: github.com/allaboutapps/nullable
+      type: Int16
+  NullableFloat:
+    type: number
+    format: float
+    example: 1.5
+    x-go-type:
+      import:
+        package: github.com/allaboutapps/nullable
+      type: Float32
+  NullableFloat64:
+    type: number
+    format: float
+    example: 1.5
+    x-go-type:
+      import:
+        package: github.com/allaboutapps/nullable
+      type: Float64
+  NullableString:
+    type: string
+    example: example
+    x-go-type:
+      import:
+        package: github.com/allaboutapps/nullable
+      type: String
 ```
 
 # Contributing
