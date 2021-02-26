@@ -1,4 +1,4 @@
-module github.com/allaboutapps/nullable
+module github.com/majodev/nullable
 
 go 1.14
 
