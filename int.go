@@ -6,7 +6,16 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+)
+
+// Compile time validation that our types implement the expected interfaces
+var (
+	_ runtime.Validatable        = &Int{}
+	_ runtime.ContextValidatable = &Int{}
+	_ runtime.Validatable        = &IntSlice{}
+	_ runtime.ContextValidatable = &IntSlice{}
 )
 
 // Int represents a int that may be null or not

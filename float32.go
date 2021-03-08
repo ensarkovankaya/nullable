@@ -6,7 +6,16 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+)
+
+// Compile time validation that our types implement the expected interfaces
+var (
+	_ runtime.Validatable        = &Float32{}
+	_ runtime.ContextValidatable = &Float32{}
+	_ runtime.Validatable        = &Float32Slice{}
+	_ runtime.ContextValidatable = &Float32Slice{}
 )
 
 // Float32 represents a float32 that may be null or not

@@ -6,7 +6,16 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+)
+
+// Compile time validation that our types implement the expected interfaces
+var (
+	_ runtime.Validatable        = &Bool{}
+	_ runtime.ContextValidatable = &Bool{}
+	_ runtime.Validatable        = &BoolSlice{}
+	_ runtime.ContextValidatable = &BoolSlice{}
 )
 
 // Bool represents a bool that may be null or not
