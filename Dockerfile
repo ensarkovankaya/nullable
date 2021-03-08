@@ -3,7 +3,7 @@
 # --- https://hub.docker.com/_/golang
 # --- https://github.com/microsoft/vscode-remote-try-go/blob/master/.devcontainer/Dockerfile
 ### -----------------------
-FROM golang:1.14.2 AS development
+FROM golang:1.16.0 AS development
 
 # Avoid warnings by switching to noninteractive
 ENV DEBIAN_FRONTEND=noninteractive

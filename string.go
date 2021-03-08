@@ -4,8 +4,18 @@ package nullable
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+)
+
+// Compile time validation that our types implement the expected interfaces
+var (
+	_ runtime.Validatable        = &String{}
+	_ runtime.ContextValidatable = &String{}
+	_ runtime.Validatable        = &StringSlice{}
+	_ runtime.ContextValidatable = &StringSlice{}
 )
 
 // String represents a string that may be null or not
@@ -42,8 +52,13 @@ func (s *String) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// Validate implements runtime.Validateable interface for go-swagger generation.
+// Validate implements runtime.Validateable interface from github.com/go-openapi/runtime
 func (s *String) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate implements runtime.ContextValidatable from github.com/go-openapi/runtime
+func (s *String) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
@@ -68,5 +83,25 @@ func (s *StringSlice) UnmarshalJSON(data []byte) error {
 	}
 
 	s.Valid = true
+	return nil
+}
+
+// Returns nil if not present or valid. Otherwise it will
+// return a pointer to the value.
+func (s *StringSlice) Ptr() *[]string {
+	if s.Present && s.Valid {
+		return &s.Value
+	}
+
+	return nil
+}
+
+// Validate implements runtime.Validateable interface from github.com/go-openapi/runtime
+func (s *StringSlice) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate implements runtime.ContextValidatable from github.com/go-openapi/runtime
+func (s *StringSlice) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
