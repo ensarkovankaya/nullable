@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/kernle32dll/nullable.svg?branch=master)](https://travis-ci.com/kernle32dll/nullable)
-[![GoDoc](https://godoc.org/github.com/majodev/nullable?status.svg)](http://godoc.org/github.com/majodev/nullable)
-[![Go Report Card](https://goreportcard.com/badge/github.com/majodev/nullable)](https://goreportcard.com/report/github.com/majodev/nullable)
+[![GoDoc](https://godoc.org/github.com/allaboutapps/nullable?status.svg)](http://godoc.org/github.com/allaboutapps/nullable)
+[![Go Report Card](https://goreportcard.com/badge/github.com/allaboutapps/nullable)](https://goreportcard.com/report/github.com/allaboutapps/nullable)
 [![codecov](https://codecov.io/gh/kernle32dll/nullable/branch/master/graph/badge.svg)](https://codecov.io/gh/kernle32dll/nullable)
 
 # nullable
@@ -13,13 +13,13 @@ Inspired by [How to determine if a JSON key has been set to null or not provided
 To get the package, execute:
 
 ```bash
-go get github.com/majodev/nullable
+go get github.com/allaboutapps/nullable
 ```
 
 To import this package, add the following line to your code:
 
 ```bash
-import "github.com/majodev/nullable"
+import "github.com/allaboutapps/nullable"
 ```
 
 Refer to it as `nullable`.
@@ -29,7 +29,7 @@ For more details, see the API documentation.
 # Example
 
 ```go
-import "github.com/majodev/nullable"
+import "github.com/allaboutapps/nullable"
 
 func main() {
 	usr := struct {
@@ -74,14 +74,14 @@ definitions:
     example: 1234
     x-go-type:
       import:
-        package: github.com/majodev/nullable
+        package: github.com/allaboutapps/nullable
       type: Int
   NullableInt16:
     type: integer
     example: 1234
     x-go-type:
       import:
-        package: github.com/majodev/nullable
+        package: github.com/allaboutapps/nullable
       type: Int16
   NullableFloat:
     type: number
@@ -89,7 +89,7 @@ definitions:
     example: 1.5
     x-go-type:
       import:
-        package: github.com/majodev/nullable
+        package: github.com/allaboutapps/nullable
       type: Float32
   NullableFloat64:
     type: number
@@ -97,14 +97,14 @@ definitions:
     example: 1.5
     x-go-type:
       import:
-        package: github.com/majodev/nullable
+        package: github.com/allaboutapps/nullable
       type: Float64
   NullableString:
     type: string
     example: example
     x-go-type:
       import:
-        package: github.com/majodev/nullable
+        package: github.com/allaboutapps/nullable
       type: String
 ```
 

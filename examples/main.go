@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/majodev/nullable"
+	"github.com/allaboutapps/nullable"
 )
 
 const (
