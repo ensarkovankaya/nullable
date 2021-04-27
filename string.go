@@ -37,6 +37,14 @@ func (s *String) Ptr() *string {
 }
 
 // UnmarshalJSON implements json.Marshaler interface.
+func (s *String) MarshallJSON() ([]byte, error) {
+	if s.Present && s.Valid {
+		return []byte(s.Value), nil
+	}
+	return null, nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler interface.
 func (s *String) UnmarshalJSON(data []byte) error {
 	s.Present = true
 
