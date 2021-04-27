@@ -36,7 +36,7 @@ func (f *Float64) Ptr() *float64 {
 	return nil
 }
 
-// UnmarshalJSON implements json.Marshaler interface.
+// UnmarshalJSON implements json.Unmarshaler interface.
 func (f *Float64) UnmarshalJSON(data []byte) error {
 	f.Present = true
 
@@ -70,7 +70,7 @@ type Float64Slice struct {
 	Value   []float64
 }
 
-// UnmarshalJSON implements json.Marshaler interface.
+// UnmarshalJSON implements json.Unmarshaler interface.
 func (f *Float64Slice) UnmarshalJSON(data []byte) error {
 	f.Present = true
 

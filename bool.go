@@ -36,7 +36,7 @@ func (b *Bool) Ptr() *bool {
 	return nil
 }
 
-// UnmarshalJSON implements json.Marshaler interface.
+// UnmarshalJSON implements json.Unmarshaler interface.
 func (b *Bool) UnmarshalJSON(data []byte) error {
 	b.Present = true
 
@@ -70,7 +70,7 @@ type BoolSlice struct {
 	Value   []bool
 }
 
-// UnmarshalJSON implements json.Marshaler interface.
+// UnmarshalJSON implements json.Unmarshaler interface.
 func (b *BoolSlice) UnmarshalJSON(data []byte) error {
 	b.Present = true
 

@@ -26,7 +26,7 @@ func (t *Time) Ptr() *time.Time {
 	return nil
 }
 
-// UnmarshalJSON implements json.Marshaler interface.
+// UnmarshalJSON implements json.Unmarshaler interface.
 func (t *Time) UnmarshalJSON(data []byte) error {
 	t.Present = true
 

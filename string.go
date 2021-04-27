@@ -70,7 +70,7 @@ type StringSlice struct {
 	Value   []string
 }
 
-// UnmarshalJSON implements json.Marshaler interface.
+// UnmarshalJSON implements json.Unmarshaler interface.
 func (s *StringSlice) UnmarshalJSON(data []byte) error {
 	s.Present = true
 

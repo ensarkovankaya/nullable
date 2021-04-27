@@ -36,7 +36,7 @@ func (i *Int16) Ptr() *int16 {
 	return nil
 }
 
-// UnmarshalJSON implements json.Marshaler interface.
+// UnmarshalJSON implements json.Unmarshaler interface.
 func (i *Int16) UnmarshalJSON(data []byte) error {
 	i.Present = true
 
@@ -70,7 +70,7 @@ type Int16Slice struct {
 	Value   []int16
 }
 
-// UnmarshalJSON implements json.Marshaler interface.
+// UnmarshalJSON implements json.Unmarshaler interface.
 func (i *Int16Slice) UnmarshalJSON(data []byte) error {
 	i.Present = true
 
