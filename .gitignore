@@ -27,3 +27,5 @@ tmp
 
 # mac specific
 .DS_Store
+
+.idea/
